@@ -1,11 +1,10 @@
-# 修改原本的 php captcha 成為更簡單的版本, 提供 base64 影像格式的輸出。
+# 修改原本的 php captcha 成為更簡單的版本
+# 提供 base64 影像格式的輸出。
 # mtchang.tw@gmail.com
-# 
+
 
 # cool-php-captcha
-This is the official GitHub project from code.google.com/p/cool-php-captcha
-
-
+Official GitHub project from https://github.com/josecl/cool-php-captcha
 
 This project generates friendly captcha images. This project provides the SimpleCaptcha class.
 Some fetures are: Background and foreground colors, dictionary words, non-dictionary random words, blur, shadows, JPEG and PNG support.
@@ -52,11 +51,8 @@ $('#captcha_input').click(function(){
 });
 </script>
 
-
-
-<body>
-
-
+</body>
+</html>
 ```
 
 
