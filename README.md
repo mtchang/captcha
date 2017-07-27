@@ -1,3 +1,7 @@
+# 修改原本的 php captcha 成為更簡單的版本, 提供 base64 影像格式的輸出。
+# mtchang.tw@gmail.com
+# 
+
 # cool-php-captcha
 This is the official GitHub project from code.google.com/p/cool-php-captcha
 
@@ -10,39 +14,50 @@ Some fetures are: Background and foreground colors, dictionary words, non-dictio
 Basic example
 -------------
 
+* 只要執行 captchabase64.php 或 captcha.php 程式
+* 在  session 內，就會有對應於 captcha 的字串 $_SESSION['captcha']
+* 底下範例透過 jquery post 呼叫 captchabase64.php 產生的 images base64 code 來生成 image 檔案
 
 ```php
+<?php
 session_start();
-$captcha = new SimpleCaptcha();
-// Change configuration...
-//$captcha->wordsFile = null;           // Disable dictionary words and use random letters instead
-//$captcha->wordsFile = 'words/es.txt'; // Enable spanish words dictionary
-//$captcha->session_var = 'secretword'; // Changes the session variable from 'captcha' to 'secretword'
-$captcha->CreateImage();
+
+?>
+<html>
+<head>
+<script
+  src="http://code.jquery.com/jquery-1.12.4.min.js"
+  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+  crossorigin="anonymous"></script>
+</head>
+<body>
+
+<input name="captcha" id="captcha_input" type="text" size="10"  maxlength="4">
+
+<span id="show_captcha">
+<img src="https://www.google.com/recaptcha/intro/images/hero-recaptcha-demo.gif" id="captcha"  height="20" width="65" >
+</span>
+
+<script>
+$(document).ready(function() {
+
+$('#captcha_input').click(function(){
+	$.post( 'captchabase64.php', function( captchabase64data ) {
+		var img_cpatcha_html = '<img src='+captchabase64data+' id="captcha"  height="20" width="58" >';
+		$('#show_captcha').html(img_cpatcha_html);
+	});
+
+});
+
+});
+</script>
+
+
+
+<body>
+
+
 ```
-
-... will output an image, for example:
-<br>
-![http://cool-php-captcha.googlecode.com/files/example.jpg](http://cool-php-captcha.googlecode.com/files/example.jpg)
-
-
-
-You can validate the php captcha with: (case-insensitive version)
-
-```php
-if (empty($_SESSION['captcha']) || strtolower(trim($_REQUEST['captcha'])) != $_SESSION['captcha']) {
-    return "Invalid captcha";
-}
-```
-
-You can see a live example here: http://joserodriguez.cl/cool-php-captcha
-
-
-More examples
--------------
-Background and foreground colors, dictionary words, non-dictionary random words, blur, shadows, JPEG and PNG support:<br>
-<br>
-<img src='http://cool-php-captcha.googlecode.com/files/examples.jpg' />
 
 
 
