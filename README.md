@@ -1,6 +1,7 @@
-# 修改原本的 php captcha 成為更簡單的版本
-# 提供 base64 影像格式的輸出。
-# mtchang.tw@gmail.com
+# 簡介
+修改原本的 php captcha 成為更簡單的版本
+提供 base64 影像格式的輸出。
+mtchang.tw@gmail.com
 
 
 # cool-php-captcha
